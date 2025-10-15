@@ -14,6 +14,9 @@ pnpm-debug.log*
 .env.test.local
 .env.production.local
 
+# Allow .env.example files (templates should be committed)
+!.env.example
+
 # Build outputs
 .next/
 dist/

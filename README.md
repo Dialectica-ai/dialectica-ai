@@ -64,13 +64,29 @@
    npm install
    ```
 
-3. **Database Setup**
+3. **Environment Configuration**
+   
+   **Server Environment:**
    ```bash
    cd server
-   # Set up your DATABASE_URL in .env file
-   echo "DATABASE_URL=postgresql://username:password@localhost:5432/dialectica_ai" > .env
+   cp .env.example .env
+   # Edit .env with your database credentials and configuration
+   ```
 
-   # Run database migrations
+   **Client Environment:**
+   ```bash
+   cd client
+   cp .env.example .env.local
+   # Edit .env.local with your configuration
+   # See client/SETUP.md for detailed setup instructions
+   ```
+
+   > 📖 For detailed client setup instructions including Google OAuth configuration, see [client/SETUP.md](client/SETUP.md)
+
+4. **Database Setup**
+   ```bash
+   cd server
+   # After configuring your .env file, run migrations
    npx prisma migrate dev
    ```
 
@@ -89,8 +105,10 @@
    ```
 
 5. **Access the application**
-   - Frontend: http://localhost:3001
+   - Frontend: http://localhost:3000 (or http://localhost:3001 depending on config)
    - Backend: http://localhost:5003
+
+> ⚠️ **Note**: Make sure both server and client are running for the application to work properly. The client needs to connect to the Socket.io server.
 
 ## Project Structure
 
@@ -126,13 +144,29 @@ dialectica-ai/
 ```env
 DATABASE_URL=postgresql://username:password@localhost:5432/dialectica_ai
 PORT=5003
+NODE_ENV=development
+CORS_ORIGINS=http://localhost:3000,http://localhost:3001
 ```
+
+> See `server/.env.example` for all available options.
 
 ### Client (.env.local)
 ```env
-NEXTAUTH_URL=http://localhost:3001
-NEXTAUTH_SECRET=your-secret-key
+# WebSocket Configuration
+NEXT_PUBLIC_SOCKET_URL=http://localhost:5003
+
+# NextAuth Configuration
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key-here
+
+# Google OAuth (if using authentication)
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
 ```
+
+> 📖 **For detailed setup instructions**, including how to obtain Google OAuth credentials, see [client/SETUP.md](client/SETUP.md)
+
+> ⚠️ **Security**: Never commit `.env` or `.env.local` files to version control!
 
 ## Contributing
 
