@@ -120,8 +120,6 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
-@layer base {
   :root {
     --background: 220 15% 8%;
     --foreground: 0 0% 98%;
@@ -221,9 +219,13 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
+  * {
+    @apply border-border;
+  }
 
-@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
   * {
     @apply border-border;
   }
@@ -232,6 +234,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
 
 /* Dialecta AI Futuristic Animation Classes */
 @layer components {
