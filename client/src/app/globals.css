@@ -120,4 +120,217 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+  :root {
+    --background: 220 15% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 15% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 15% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 4 90% 58%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 217 91% 60%;
+
+    /* Dialecta AI Brand Colors */
+    --dialecta-blue: 217 91% 60%;
+    --dialecta-red: 4 90% 58%;
+    --dialecta-yellow: 43 96% 56%;
+    --dialecta-green: 142 69% 49%;
+
+    /* Futuristic Effects */
+    --glow-blue: 217 91% 60%;
+    --glow-blue-secondary: 200 100% 50%;
+    --scan-line: 217 91% 60%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60% / 0.3), hsl(4 90% 58% / 0.3));
+    --gradient-card: linear-gradient(145deg, hsl(220 15% 12%), hsl(220 15% 18%));
+    --gradient-scan: linear-gradient(90deg, transparent, hsl(217 91% 60% / 0.6), transparent);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.3);
+    --shadow-scan: 0 0 20px hsl(217 91% 60% / 0.5);
+    --shadow-card: 0 8px 32px hsl(220 15% 5% / 0.8);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 4 90% 58%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+
+
+/* Dialecta AI Futuristic Animation Classes */
+@layer components {
+  .dialecta-heading {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  .fade-in {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .fade-in-subtitle {
+    animation: fadeInSubtle 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .dialecta-glow {
+    box-shadow: 0 0 20px hsl(var(--dialecta-blue) / 0.5);
+    transition: var(--transition-glow);
+  }
+
+  .dialecta-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--dialecta-blue) / 0.7);
+  }
+
+  .scan-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scan-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-scan);
+    animation: scanLine 3s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  .text-dialecta-blue { color: hsl(var(--dialecta-blue)); }
+  .text-dialecta-red { color: hsl(var(--dialecta-red)); }
+  .text-dialecta-yellow { color: hsl(var(--dialecta-yellow)); }
+  .text-dialecta-green { color: hsl(var(--dialecta-green)); }
+  
+  .bg-dialecta-blue { background-color: hsl(var(--dialecta-blue)); }
+  .bg-dialecta-red { background-color: hsl(var(--dialecta-red)); }
+  .bg-dialecta-yellow { background-color: hsl(var(--dialecta-yellow)); }
+  .bg-dialecta-green { background-color: hsl(var(--dialecta-green)); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInSubtle {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scanLine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--dialecta-blue) / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--dialecta-blue) / 0.8);
+  }
 }
