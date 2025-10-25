@@ -130,7 +130,7 @@ export default function ContactPage() {
             <Label className="text-white font-medium">Contact Purpose *</Label>
             <Select 
               value={formData.contactPurpose} 
-              onValueChange={(value:any) => handleInputChange("contactPurpose", value)}
+              onValueChange={(value:string) => handleInputChange("contactPurpose", value)}
             >
               <SelectTrigger className={`scan-effect border rounded-xl px-4 py-3 w-full text-white shadow-lg transition-all duration-300 bg-black/50 ${
                 formErrors.contactPurpose ? "border-dialecta-blue" : "border-white/20"
