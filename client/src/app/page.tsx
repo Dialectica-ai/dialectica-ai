@@ -35,16 +35,31 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, del
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="group p-6 rounded-xl bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 hover:shadow-lg"
+      className="group h-full flex flex-col items-center justify-between text-center
+                 p-6 rounded-xl bg-white dark:bg-neutral-800 border border-gray-200
+                 dark:border-neutral-700 hover:border-blue-500 dark:hover:border-blue-500
+                 transition-all duration-300 hover:shadow-lg"
     >
-      <div className="w-12 h-12 mb-4 rounded-lg bg-blue-600 text-white flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-        {icon}
+      {/* Inner wrapper for consistent height and spacing */}
+      <div className="flex flex-col items-center justify-center flex-grow">
+        <div className="w-12 h-12 mb-4 rounded-lg bg-blue-600 text-white flex items-center justify-center
+                        group-hover:scale-110 transition-transform duration-300">
+          {icon}
+        </div>
+
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+          {title}
+        </h3>
+
+        {/* Set a min height to equalize cards visually */}
+        <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed mt-1 min-h-[56px]">
+          {description}
+        </p>
       </div>
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{title}</h3>
-      <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">{description}</p>
     </motion.div>
   );
 };
+
 
 const StatCounter: React.FC<StatCounterProps> = ({ target, label, suffix = "", delay = 0 }) => {
   return (
@@ -157,7 +172,7 @@ export default function LandingPage() {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 shadow-2xl">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch auto-rows-fr place-items-stretch">
             {features.map((feature, index) => (
               <FeatureCard
                 key={index}
