@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { IconMessage } from "@tabler/icons-react";
 import { getSocket } from "@/lib/socket";
 import { MessageInput } from "./message-input";
+import { useSession } from "next-auth/react";
 
 interface ChatPageProps {}
 
@@ -21,6 +22,8 @@ interface ChatMessage {
 const ChatPage: React.FC<ChatPageProps> = () => {
   const params = useParams();
   const router = useRouter();
+  const {data} =useSession();
+  
   const roomId = params.roomId as string;
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -268,10 +271,31 @@ const ChatPage: React.FC<ChatPageProps> = () => {
                       ) : (
                         <div className={`flex gap-2 md:gap-3 ${isOwnMessage ? "flex-row-reverse" : ""} px-1`}>
                           <div
-                            className={`w-8 h-8 md:w-10 md:h-10 ${isOwnMessage ? "bg-green-500" : "bg-blue-500"} rounded-full flex items-center justify-center text-white text-xs md:text-sm font-semibold flex-shrink-0`}
-                          >
-                            {msg.user.substring(0, 2).toUpperCase()}
-                          </div>
+  className={`w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0 ${
+    isOwnMessage ? "bg-green-500" : "bg-blue-500"
+  }`}
+>
+  {isOwnMessage && data?.user?.image ? (
+    <img
+      src={data.user.image}
+      alt={data.user.name ? `${data.user.name}'s avatar` : "User avatar"}
+      className="w-full h-full object-cover"
+      onError={(e)=>{
+        e.currentTarget.style.display='none';
+      }}
+    />
+  ) : (
+    <span className="text-white text-xs md:text-sm font-semibold">
+      {msg.user.substring(0, 2).toUpperCase()}
+    </span>
+  )}
+</div>
+
+                         
+    
+  
+
+
                           <div
                             className={`min-w-0 max-w-[calc(100%-3rem)] md:max-w-[75%] ${isOwnMessage ? "ml-auto" : ""}`}
                           >
