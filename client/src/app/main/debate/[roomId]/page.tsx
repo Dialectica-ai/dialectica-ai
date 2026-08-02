@@ -297,7 +297,7 @@ const ChatPage: React.FC<ChatPageProps> = () => {
 
 
                           <div
-                            className={`min-w-0 max-w-[calc(100%-3rem)] md:max-w-[75%] ${isOwnMessage ? "ml-auto" : ""}`}
+                            className={`min-w-0 w-fit max-w-[calc(100%-3rem)] md:max-w-[60%] ${isOwnMessage ? "ml-auto" : ""}`}
                           >
                             <div
                               className={`flex items-center gap-2 mb-1 ${isOwnMessage ? "flex-row-reverse" : ""}`}
